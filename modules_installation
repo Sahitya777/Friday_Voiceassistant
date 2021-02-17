@@ -1,0 +1,16 @@
+type the below commands in terminal/cmd
+pip install SpeechRecognition
+pip install pyttsx3
+pip install pyjokes
+pip install random2
+pip install pywhatkit
+pip install wikipedia
+pip install translate
+pip install gTTS
+pip install wolframalpha
+pip install PyAutoGUI
+pip install pyfiglet
+pip install Pyaudio 
+# if error occurs in installation of pyaudio module then find a file through (https://www.lfd.uci.edu/~gohlke/pythonlibs/) which supports your system config:
+1) save the file in the folder where source code file is 
+2) then type pip install file_name in terminal or cmd
