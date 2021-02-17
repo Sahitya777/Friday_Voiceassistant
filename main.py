@@ -52,11 +52,13 @@ def wish_me():
     take("How may i help you")
 
 
+# command intake
 def talk(command_intake):
     engine.say(command_intake)
     engine.runAndWait()
 
 
+# take voice input from user through mic and convert voice to string using pyttsx3
 def take_command():
     listener = sr.Recognizer()
     with sr.Microphone() as source:
