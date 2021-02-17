@@ -15,6 +15,8 @@ import pyautogui
 from pyfiglet import Figlet
 from datetime import date
 
+
+# function defined for forming a pattern 'FRIDAY'
 def friday():
     text = Figlet(font='digital')
     os.system('cls')
@@ -22,33 +24,38 @@ def friday():
     print(text.renderText("FRIDAY"))
 
 
-
+# for mac users remove 'sapi5' from init on line 24
 engine = pyttsx3.init('sapi5')
 
 
+# command intake
 def take(text):
     engine.say(text)
     engine.runAndWait()
 
-def wishme():
+
+# wish_me is used for wishing the user (eg. good-morning/afternoon/evening)
+def wish_me():
     hour = int(datetime.datetime.now().hour)
-    if hour >= 0 and hour < 12:
+    if 0 <= hour < 12:
         take("Good Morning Sir !")
 
-    elif hour >= 12 and hour < 18:
+    elif 12 <= hour < 18:
         take("Good Afternoon Sir !")
 
     else:
         take("Good Evening Sir !")
 
-    assname = ("Friday 1 point o")
+    assistant_name = "Friday 1 point o"
     take("I am your Assistant")
-    take(assname)
+    take(assistant_name)
     take("How may i help you")
 
-def talk(command):
-    engine.say(command)
+
+def talk(command_intake):
+    engine.say(command_intake)
     engine.runAndWait()
+
 
 def take_command():
     listener = sr.Recognizer()
@@ -57,30 +64,31 @@ def take_command():
         listener.pause_threshold = 1
         voice = listener.listen(source)
     try:
-        command = listener.recognize_google(voice, language='en-in')
-        command = command.lower()
+        command_user = listener.recognize_google(voice, language='en-in')
+        command_user = command_user.lower()
 
-    except Exception as e:
+    except Exception:
         print("Say the command again")
         return "None"
-    return command
+    return command_user
+
 
 if __name__ == "__main__":
     friday()
-    wishme()
+    wish_me()
     while True:
         command = take_command()
 
         if 'play' in command:
             song = command.replace('play', '')
-            talk('playing'+song)
+            talk('playing' + song)
             pywhatkit.playonyt(song)
             time.sleep(10)
 
         elif 'time' in command:
             time = datetime.datetime.now().strftime('%H %M %p')
             print(time)
-            talk("Current time is"+time)
+            talk("Current time is" + time)
 
         elif 'date' in command:
             date = date.today()
@@ -108,7 +116,7 @@ if __name__ == "__main__":
             choices = ['Tails', 'Heads']
             output = random.choice(choices)
             print(output)
-            talk("The outcome is"+output)
+            talk("The outcome is" + output)
 
         elif 'are you single' in command:
             talk("sorry i have a girlfriend")
@@ -136,7 +144,7 @@ if __name__ == "__main__":
             print("How are you?")
             talk("How are you?")
 
-        elif "who created you"  in command:
+        elif "who created you" in command:
             print("I was created by JV2S")
             talk("I was created by JV2S")
 
@@ -186,7 +194,6 @@ if __name__ == "__main__":
                 print("Ok next time")
                 talk("Ok next time")
 
-
         elif "exit" in command:
             print("Thanks for giving me your time")
             talk('Thanks for giving me your time')
@@ -204,7 +211,7 @@ if __name__ == "__main__":
             talk("User asked to Locate")
             print(location.upper())
             talk(location)
-            webbrowser.open("https://www.google.co.in/maps/place/" +command + "")
+            webbrowser.open("https://www.google.co.in/maps/place/" + command + "")
             time.sleep(6)
 
         elif "translate" in command:
@@ -219,7 +226,7 @@ if __name__ == "__main__":
                 obs = gTTS(text=translation, lang='de', slow=False)
                 obs.save('german.mp3')
                 print("In German{} is {}".format(command, translation))
-                talk("In German"+command+"is")
+                talk("In German" + command + "is")
                 os.system('german.mp3')
                 time.sleep(3)
 
@@ -229,17 +236,17 @@ if __name__ == "__main__":
                 obs1 = gTTS(text=translation, lang='fr', slow=False)
                 obs1.save("french.mp3")
                 print("In French{} is {}".format(command, translation))
-                talk("In French"+command+"is")
+                talk("In French" + command + "is")
                 os.system('french.mp3')
                 time.sleep(3)
 
             elif 'italian' in command1:
                 translator = Translator(to_lang="Italian")
                 translation = translator.translate(command)
-                obs2= gTTS(text=translation, lang='it', slow=False)
+                obs2 = gTTS(text=translation, lang='it', slow=False)
                 obs2.save("italian.mp3")
                 print("In Italian{} is {}".format(command, translation))
-                talk("In Italian"+command+"is")
+                talk("In Italian" + command + "is")
                 os.system('italian.mp3')
                 time.sleep(3)
 
@@ -249,7 +256,7 @@ if __name__ == "__main__":
                 my = gTTS(text=translation, lang='ru', slow=False)
                 my.save("russia.mp3")
                 print("In Russian{} is {}".format(command, translation))
-                talk("In Russian"+command+"is")
+                talk("In Russian" + command + "is")
                 os.system('russia.mp3')
                 time.sleep(3)
 
@@ -259,17 +266,17 @@ if __name__ == "__main__":
                 my1 = gTTS(text=translation, lang='ja', slow=False)
                 my1.save("japanese.mp3")
                 print("In Japanese{} is {}".format(command, translation))
-                talk("In Japanese"+command+"is")
+                talk("In Japanese" + command + "is")
                 os.system('japanese.mp3')
                 time.sleep(3)
 
             elif "hindi" in command1:
                 translator = Translator(to_lang="Hindi")
                 translation = translator.translate(command)
-                myobj = gTTS(text=translation, lang='hi', slow=False)
-                myobj.save("welcome.mp3")
+                my_object = gTTS(text=translation, lang='hi', slow=False)
+                my_object.save("welcome.mp3")
                 print("In Hindi{} is {}".format(command, translation))
-                talk("In Hindi"+command+"is")
+                talk("In Hindi" + command + "is")
                 os.system("welcome.mp3")
                 time.sleep(3)
 
@@ -287,4 +294,4 @@ if __name__ == "__main__":
             screenshot.save("screen.png")
 
         elif 'friday' in command:
-            wishme()
+            wish_me()
