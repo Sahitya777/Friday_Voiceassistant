@@ -19,8 +19,6 @@ from datetime import date
 # function defined for forming a pattern 'FRIDAY'
 def friday():
     text = Figlet(font='digital')
-    os.system('cls')
-    os.system('mode con: cols=30 lines=15')
     print(text.renderText("FRIDAY"))
 
 
@@ -84,8 +82,11 @@ if __name__ == "__main__":
         if 'play' in command:
             song = command.replace('play', '')
             talk('playing' + song)
+            print("Listen to{} till then i'll sleep for a few seconds".format(song))
+            talk("Listen to {} till then i'll sleep for a few seconds".format(song))
             pywhatkit.playonyt(song)
             time.sleep(10)
+            talk('I am awake sir!')
 
         elif 'time' in command:
             time = datetime.datetime.now().strftime('%H %M %p')
@@ -125,8 +126,8 @@ if __name__ == "__main__":
             print("Sorry I Have a girlfriend")
 
         elif "will you go on a date with me" in command:
-            print("No i have Fever")
-            talk("No i have fever")
+            print("Sorry I am not feeling well")
+            talk("Sorry i am not feeling well")
 
         elif 'open youtube' in command:
             webbrowser.open("youtube.com")
@@ -141,8 +142,8 @@ if __name__ == "__main__":
             time.sleep(6)
 
         elif 'how are you' in command:
-            print("I am fine,Thank you")
-            talk("I am fine,Thank you")
+            print("I am fine. Thank you")
+            talk("I am fine. Thank you")
             print("How are you?")
             talk("How are you?")
 
@@ -150,13 +151,13 @@ if __name__ == "__main__":
             print("I was created by JV2S")
             talk("I was created by JV2S")
 
-        elif 'who i am' in command:
+        elif 'who am i' in command:
             print("If you are talking and giving me commands then you are definitely human")
             talk("If you are talking and giving me commands then you are definitely human")
 
-        elif "why you came to this world" in command:
-            print("This is a secret i am not willing to tell")
-            talk("This is a secret i am not willing to tell")
+        elif "why did you come to this world" in command:
+            print("Well, this is a secret I am not willing to tell")
+            talk("Well, this is a secret i am not willing to tell")
 
         elif "hello testing 123" in command:
             print("I am completely operational and all my circuits are working properly")
@@ -169,12 +170,12 @@ if __name__ == "__main__":
             talk('Mr Stark is that you?')
 
         elif 'can you dance with me' in command:
-            print("No these guilty feet have got no rhythm,Wait i have no feet")
-            talk("No these guilty feet have got no rhythm,Wait i have no feet")
+            print("No these guilty feet have got no rhythm, Wait i have no feet")
+            talk("No these guilty feet have got no rhythm, Wait i have no feet")
 
         elif "when will the world end" in command:
-            print('''Well,Unix 32-bit time overflows
-                        on January 19,2038.Maybe then,''')
+            print('''Well,Unix 32-bit time overflows...
+                        ...on January 19, 2038. Maybe then!''')
             talk("Well,Unix 32-bit time overflows on January 19,2038.Maybe then,")
 
         elif 'how much wood would a woodchuck chuck if a woodchuck could chuck chuck wood' in command:
@@ -214,7 +215,7 @@ if __name__ == "__main__":
             print(location.upper())
             talk(location)
             webbrowser.open("https://www.google.co.in/maps/place/" + command + "")
-            time.sleep(6)
+            time.sleep(8)
 
         elif "translate" in command:
             command = command.replace("translate", "")
@@ -282,18 +283,32 @@ if __name__ == "__main__":
                 os.system("welcome.mp3")
                 time.sleep(3)
 
-        elif "calculate" or 'what is' in command:
+        elif 'screenshot' in command:
+            time.sleep(3)
+            print('Taking SS now!')
+            talk('Taking screenshot now')
+            screenshot = pyautogui.screenshot()
+            screenshot.save("screen.png")
+            print('Done!')
+            talk('Done')
+
+        elif 'friday' in command:
+            wish_me()
+
+        elif "calculate" in command:
             question = command
-            command = command.replace("calculate" or "add" or 'what is', "")
+            command = command.replace("calculate", "")
             client = wolframalpha.Client('Q25UJH-7HU99AVT32')
             res = client.query(question)
             answer = next(res.results).text
             print("The answer is " + answer)
             talk("The answer is " + answer)
 
-        elif 'screenshot' in command:
-            screenshot = pyautogui.screenshot()
-            screenshot.save("screen.png")
-
-        elif 'friday' in command:
-            wish_me()
+        elif 'what is' in command:
+            question = command
+            command = command.replace('what is', "")
+            client = wolframalpha.Client('Q25UJH-7HU99AVT32')
+            res = client.query(question)
+            answer = next(res.results).text
+            print("The answer is " + answer)
+            talk("The answer is " + answer)
